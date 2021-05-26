@@ -1,0 +1,46 @@
+.search-countries {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.country {
+  width: 500px;
+  margin-bottom: 50px;
+}
+
+.country-name {
+  text-align: center;
+  font-size: 35px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.country-info {
+  padding-right: 40px;
+  font-size: 18px;
+}
+
+.title {
+  font-weight: 800;
+}
+
+.input {
+  text-align: center;
+  font-size: 20px;
+  width: 500px;
+  height: 40px;
+}
+
+.languages-list {
+  padding-left: 25px;
+}
+
+.country-flag {
+  border: 1px solid black;
+}
