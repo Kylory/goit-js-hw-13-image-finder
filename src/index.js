@@ -1,11 +1,9 @@
 import '../node_modules/material-design-icons/iconfont/material-icons.css';
-// material - design - icons / iconfont / material - icons.css;
 import './css/style.css';
 import galleryTpl from './templates/galleryTpl.hbs';
-// import fetchCountriesByName from './js/fetchCountriesByName';
-// import renderCountryCard from './js/renderCountryCard';
+import SearchService from './js/searchService';
 import _ from 'lodash';
-// import clearMarkup from './js/clearMarkup';
+import clearMarkup from './js/clearMarkup';
 
 const refs = {
   gallery: document.querySelector('.gallery'),
@@ -13,40 +11,49 @@ const refs = {
   searchQuery: document.querySelector('.search-input'),
 };
 
-// let searchQuery = refs.searchQuery.value;
+const searchService = new SearchService();
 
-// function showCountries() {
-//   if (refs.input.value) {
-//     fetchCountriesByName(refs.input.value).then(renderCountryCard);
-//   } else clearMarkup();
-// }
+refs.loadMoreBtn.disabled = true;
 
-const API_KEY = '21804857-e4d02e1e62ab2bb6123c0439f';
-
-function fetchImagesByName(searchQuery, page) {
-  return fetch(
-    `https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${searchQuery}&page=${page}&per_page=12&key=${API_KEY}`,
-  ).then(response => {
-    return response.json();
-  });
-}
-
-function createGalleryCardsMarkup(responseFromApi) {
-  const hits = responseFromApi.hits;
+function createGalleryCardsMarkup(data) {
+  const hits = data.hits;
   return galleryTpl(hits);
 }
 
-function renderGalleryCard(markup) {
+function renderGalleryCards(markup) {
   refs.gallery.insertAdjacentHTML('beforeend', markup);
 }
 
-function searchImageByName() {
-  let searchQuery = refs.searchQuery.value;
-  //   let page = 1;
-  fetchImagesByName(searchQuery)
-    .then(hit => createGalleryCardsMarkup(hit))
-    .then(markup => renderGalleryCard(markup));
-  //   page += 1;
+function search() {
+  if (refs.searchQuery.value === '') {
+    clearMarkup();
+    refs.loadMoreBtn.disabled = true;
+  } else {
+    searchService.searchQuery = refs.searchQuery.value;
+    searchService.resetPage();
+    clearMarkup();
+    searchService
+      .fetchImagesByName()
+      .then(data => createGalleryCardsMarkup(data))
+      .then(markup => renderGalleryCards(markup));
+    refs.loadMoreBtn.disabled = false;
+  }
 }
 
-refs.searchQuery.addEventListener('input', _.debounce(searchImageByName, 600));
+function loadMore() {
+  searchService
+    .fetchImagesByName()
+    .then(data => createGalleryCardsMarkup(data))
+    .then(markup => renderGalleryCards(markup))
+    .then(() => {
+      setTimeout(() => {
+        refs.loadMoreBtn.scrollIntoView({
+          behavior: 'smooth',
+          block: 'end',
+        });
+      }, 500);
+    });
+}
+
+refs.searchQuery.addEventListener('input', _.debounce(search, 600));
+refs.loadMoreBtn.addEventListener('click', loadMore);

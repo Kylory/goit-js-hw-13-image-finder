@@ -1,7 +1,7 @@
-// const refs = {
-//   countries: document.querySelector('.countries'),
-// };
+const refs = {
+  gallery: document.querySelector('.gallery'),
+};
 
-// export default function clearMarkup() {
-//   refs.countries.innerHTML = '';
-// }
+export default function clearMarkup() {
+  refs.gallery.innerHTML = '';
+}
