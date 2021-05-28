@@ -49,7 +49,7 @@ function loadMore() {
       setTimeout(() => {
         refs.loadMoreBtn.scrollIntoView({
           behavior: 'smooth',
-          block: 'end',
+          block: 'start',
         });
       }, 500);
     });
