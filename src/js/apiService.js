@@ -16,6 +16,16 @@ export default class SearchService {
     });
   }
 
+  // async fetchImagesByName() {
+  //   const response = await fetch(
+  //     `${BASE_URL}l&q=${this.searchQuery}&page=${this.page}&per_page=12&key=${API_KEY}`,
+  //   );
+  //   this.page += 1;
+  //   console.log(response);
+  //   const res = response.json();
+  //   return res;
+  // }
+
   resetPage() {
     this.page = 1;
   }
