@@ -69,8 +69,7 @@ ul {
 
 .photo-card {
   padding-bottom: 20px;
-  max-width: 22%;
-  /* max-height: 32%; */
+  width: 22%;
 }
 
 .image-container {
