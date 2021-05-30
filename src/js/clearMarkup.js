@@ -1,6 +1,4 @@
-const refs = {
-  gallery: document.querySelector('.gallery'),
-};
+import { refs } from './refs';
 
 export default function clearMarkup() {
   refs.gallery.innerHTML = '';

@@ -8,23 +8,13 @@ export default class SearchService {
   }
 
   fetchImagesByName() {
-    return fetch(
-      `${BASE_URL}l&q=${this.searchQuery}&page=${this.page}&per_page=12&key=${API_KEY}`,
-    ).then(response => {
-      this.page += 1;
-      return response.json();
-    });
+    return fetch(`${BASE_URL}l&q=${this.searchQuery}&page=${this.page}&per_page=12&key=${API_KEY}`)
+      .then(response => {
+        this.page += 1;
+        return response.json();
+      })
+      .catch(error => console.log(error));
   }
-
-  // async fetchImagesByName() {
-  //   const response = await fetch(
-  //     `${BASE_URL}l&q=${this.searchQuery}&page=${this.page}&per_page=12&key=${API_KEY}`,
-  //   );
-  //   this.page += 1;
-  //   console.log(response);
-  //   const res = response.json();
-  //   return res;
-  // }
 
   resetPage() {
     this.page = 1;

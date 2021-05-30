@@ -33,11 +33,11 @@ ul {
 .photo-card {
   padding-bottom: 20px;
   max-width: 22%;
-  max-height: 33%;
+  /* max-height: 32%; */
 }
 
 .image-container {
-  height: 200px;
+  height: 190px;
 }
 
 .photo-item {
@@ -45,6 +45,13 @@ ul {
   display: block;
   height: 100%;
   width: 100%;
+}
+.photo-item:hover {
+  cursor: zoom-in;
+}
+
+.basicLightbox:hover {
+  cursor: zoom-out;
 }
 
 .stats {
