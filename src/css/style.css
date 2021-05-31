@@ -29,6 +29,7 @@ ul {
   height: 40px;
   text-align: center;
   font-size: 18px;
+  margin-right: 7px;
 }
 
 .search-btn {
@@ -85,8 +86,4 @@ ul {
 
 .load-more-btn {
   height: 30px;
-}
-
-.is-hidden {
-  display: none;
 }

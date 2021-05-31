@@ -11,12 +11,14 @@ import showFullImage from './js/showFullImage';
 
 const searchService = new SearchService();
 
+refs.loadMoreBtn.disabled = true;
+
 function search(event) {
   event.preventDefault();
-  if (event.currentTarget.elements.query.value == '') {
+  if (event.currentTarget.elements.query.value === '') {
     clearMarkup();
 
-    refs.loadMoreBtn.classList.toggle('is-hidden');
+    refs.loadMoreBtn.disabled = true;
   } else {
     searchService.searchQuery = event.currentTarget.elements.query.value;
     searchService.resetPage();
@@ -28,7 +30,7 @@ function search(event) {
       .then(markup => renderGalleryCards(markup))
       .catch(error => console.log(error));
 
-    refs.loadMoreBtn.classList.toggle('is-hidden');
+    refs.loadMoreBtn.disabled = false;
   }
 }
 
