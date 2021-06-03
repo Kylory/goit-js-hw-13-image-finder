@@ -7,13 +7,13 @@ export default class SearchService {
     this.page = 1;
   }
 
-  fetchImagesByName() {
-    return fetch(`${BASE_URL}l&q=${this.searchQuery}&page=${this.page}&per_page=12&key=${API_KEY}`)
-      .then(response => {
-        this.page += 1;
-        return response.json();
-      })
-      .catch(error => console.log(error));
+  async fetchImagesByName() {
+    const response = await fetch(
+      `${BASE_URL}l&q=${this.searchQuery}&page=${this.page}&per_page=12&key=${API_KEY}`,
+    );
+    const result = await response.json();
+    this.page += 1;
+    return result;
   }
 
   resetPage() {

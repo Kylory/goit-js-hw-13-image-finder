@@ -15,9 +15,9 @@ refs.loadMoreBtn.disabled = true;
 
 function search(event) {
   event.preventDefault();
+
   if (event.currentTarget.elements.query.value === '') {
     clearMarkup();
-
     refs.loadMoreBtn.disabled = true;
   } else {
     searchService.searchQuery = event.currentTarget.elements.query.value;
